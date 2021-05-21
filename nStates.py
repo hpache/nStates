@@ -117,7 +117,12 @@ class States:
         elif laser == True:
             self.transitions = allowedTransitions
             self.matrix = [[self.superOperatorElements(self.transitions,i,j) for j in range(self.N)] for i in range(self.N)]
-            self.laser = [[0,Symbol('gamma_p')*Symbol('rho_01'),-(Symbol('gamma_p')+Symbol('gamma_c'))*Symbol('rho_02'),-(Symbol('gamma_p')+Symbol('gamma_c'))*Symbol('rho_03')],[-Symbol('gamma_p')*Symbol('rho_10'),0,-Symbol('gamma_c')*Symbol('rho_12'),-Symbol('gamma_c')*Symbol('rho_13')],[-(Symbol('gamma_p')+Symbol('gamma_c'))*Symbol('rho_20'),-Symbol('gamma_c')*Symbol('rho_21'),0,0],[-(Symbol('gamma_p')+Symbol('gamma_c'))*Symbol('rho_30'),-Symbol('gamma_c')*Symbol('rho_31'),0,0]]
+            self.laser = [ 
+                [0,Symbol('gamma_p')*Symbol('rho_01'),-(Symbol('gamma_p')+Symbol('gamma_c'))*Symbol('rho_02'),-(Symbol('gamma_p')+Symbol('gamma_c'))*Symbol('rho_03')],
+                [-Symbol('gamma_p')*Symbol('rho_10'),0,-Symbol('gamma_c')*Symbol('rho_12'),-Symbol('gamma_c')*Symbol('rho_13')],
+                [-(Symbol('gamma_p')+Symbol('gamma_c'))*Symbol('rho_20'),-Symbol('gamma_c')*Symbol('rho_21'),0,0],
+                [-(Symbol('gamma_p')+Symbol('gamma_c'))*Symbol('rho_30'),-Symbol('gamma_c')*Symbol('rho_31'),0,0]
+            ]
             self.matrix = Matrix(self.matrix) + Matrix(self.laser)
 
     

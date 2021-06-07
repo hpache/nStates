@@ -19,7 +19,8 @@ class States:
         self.N = numberStates
         self.H = Matrix(hamiltonian)
         self.static = staticDictionary
-        self.rhos = [Symbol("rho_{}{}".format(i,j)) for i in range(self.N) for j in range(self.N) if i == j] + [Symbol("rho_{}{}".format(i,j)) for i in range(self.N) for j in range(self.N) if i != j] 
+        self.rhos = [Symbol("rho_{}{}".format(i,j)) for i in range(self.N) for j in range(self.N) if i == j] \
+                    + [Symbol("rho_{}{}".format(i,j)) for i in range(self.N) for j in range(self.N) if i != j] 
 
 
 
@@ -98,7 +99,8 @@ class States:
             self.Left = OrthogonalBra(self.left)
 
             # Lindblad equation, look in notes to see what this is!
-            self.L = self.gamma * ( (self.Left*self.fKet).doit() * self.rho_ii * (self.fBra*self.Right).doit() - 1/2*( (self.Left*self.iKet).doit() * self.rho_iright + self.rho_lefti * (self.iBra*self.Right).doit() ) )
+            self.L = self.gamma * ( (self.Left*self.fKet).doit() * self.rho_ii * (self.fBra*self.Right).doit() \
+                     - 1/2*( (self.Left*self.iKet).doit() * self.rho_iright + self.rho_lefti * (self.iBra*self.Right).doit() ) )
             self.lindbladMaster.append(self.L)
 
         self.total = sum(self.lindbladMaster)
@@ -154,7 +156,8 @@ class States:
 
         # Extracting elements from super matrix and putting
         # them into a list        
-        self.eqns = [self.A[i,j] for i in range(self.N) for j in range(self.N) if i == j] + [self.A[i,j] for i in range(self.N) for j in range(self.N) if i != j]
+        self.eqns = [self.A[i,j] for i in range(self.N) for j in range(self.N) if i == j] + \
+                    [self.A[i,j] for i in range(self.N) for j in range(self.N) if i != j]
 
         # Substituting parameters that are fixed
         for key in self.static.keys():
@@ -212,4 +215,15 @@ class States:
 
         return(self.df)
 
-    
+# Unit test for code formatting 
+def main():
+
+    x = 1 + 2 + 4 \
+        + 5 
+    y = 1 + 2 + 4 + \
+        5
+    print(x)
+    print(y)
+
+if __name__ == "__main__":
+    main()
